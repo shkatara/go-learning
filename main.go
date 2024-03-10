@@ -47,10 +47,10 @@ func bank_start(balance float32) {
 		if wantsCheckBalance {
 			fmt.Println("\nBalance is", balance)
 		} else if wantsAddBalance {
-			balance := addBalance(balance, to_add)
+			balance = addBalance(balance, to_add)
 			fmt.Println("\nAdd Successful. Updated Balance is", balance)
 		} else if wantsDelBalance {
-			balance := removeBalance(balance, to_del)
+			balance = removeBalance(balance, to_del)
 			if balance != 0 {
 				fmt.Println("\nWithdrawal Successful. Updated Balance is", balance)
 			}
