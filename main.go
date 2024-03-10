@@ -40,17 +40,21 @@ func bank_start(balance float32) {
 	for true {
 		bankMenu()
 		fmt.Scan(&choice)
-		if choice == 1 {
+		wantsCheckBalance := choice == 1
+		wantsAddBalance := choice == 2
+		wantsDelBalance := choice == 3
+		wantsExit := choice == 4
+		if wantsCheckBalance {
 			fmt.Println("\nBalance is", balance)
-		} else if choice == 2 {
+		} else if wantsAddBalance {
 			balance := addBalance(balance, to_add)
 			fmt.Println("\nAdd Successful. Updated Balance is", balance)
-		} else if choice == 3 {
+		} else if wantsDelBalance {
 			balance := removeBalance(balance, to_del)
 			if balance != 0 {
 				fmt.Println("\nWithdrawal Successful. Updated Balance is", balance)
 			}
-		} else if choice == 4 {
+		} else if wantsExit {
 			fmt.Println("\nExiting Bank")
 			break
 		}
