@@ -36,32 +36,50 @@ func bank_start(balance float32) {
 	var choice int
 	var to_add float32
 	var to_del float32
-
+bankWorkLoop:
 	for true {
 		bankMenu()
 		fmt.Scan(&choice)
-		wantsCheckBalance := choice == 1
-		wantsAddBalance := choice == 2
-		wantsDelBalance := choice == 3
-		wantsExit := choice == 4
-		if wantsCheckBalance {
+		switch choice {
+		case 1:
 			fmt.Println("\nBalance is", balance)
-		} else if wantsAddBalance {
+		case 2:
 			balance = addBalance(balance, to_add)
 			fmt.Println("\nAdd Successful. Updated Balance is", balance)
-		} else if wantsDelBalance {
+		case 3:
 			reduced_balance := removeBalance(balance, to_del)
 			if reduced_balance != 0 {
 				fmt.Println("\nWithdrawal Successful. Updated Balance is", reduced_balance)
 				balance = reduced_balance
 			}
-		} else if wantsExit {
+		case 4:
 			fmt.Println("\nExiting Bank")
 			fmt.Println("Thanks for choosing our Bank.")
-			break
+			break bankWorkLoop
 		}
 	}
 }
+
+/*wantsCheckBalance := choice == 1
+wantsAddBalance := choice == 2
+wantsDelBalance := choice == 3
+wantsExit := choice == 4
+if wantsCheckBalance {
+	fmt.Println("\nBalance is", balance)
+} else if wantsAddBalance {
+	balance = addBalance(balance, to_add)
+	fmt.Println("\nAdd Successful. Updated Balance is", balance)
+} else if wantsDelBalance {
+	reduced_balance := removeBalance(balance, to_del)
+	if reduced_balance != 0 {
+		fmt.Println("\nWithdrawal Successful. Updated Balance is", reduced_balance)
+		balance = reduced_balance
+	}
+} else if wantsExit {
+	fmt.Println("\nExiting Bank")
+	fmt.Println("Thanks for choosing our Bank.")
+	break
+}*/
 
 func main() {
 	var balance float32 = 1000
