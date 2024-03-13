@@ -21,7 +21,7 @@ func addBalance(balance float32, to_add float32) float32 {
 }
 
 func removeBalance(balance float32, to_del float32) float32 {
-	fmt.Print("\nHow much to Withdraw: \n")
+	fmt.Print("\nHow much to Withdraw: ")
 	fmt.Scan(&to_del)
 	if to_del > balance {
 		fmt.Println("Not Enough Funds. Can not Withdraw.")
