@@ -57,6 +57,7 @@ func bank_start(balance float32) {
 			}
 		} else if wantsExit {
 			fmt.Println("\nExiting Bank")
+			fmt.Println("Thanks for choosing our Bank.")
 			break
 		}
 	}
