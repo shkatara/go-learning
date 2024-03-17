@@ -39,27 +39,6 @@ bankWorkLoop:
 	}
 }
 
-/*wantsCheckBalance := choice == 1
-wantsAddBalance := choice == 2
-wantsDelBalance := choice == 3
-wantsExit := choice == 4
-if wantsCheckBalance {
-	fmt.Println("\nBalance is", balance)
-} else if wantsAddBalance {
-	balance = addBalance(balance, to_add)
-	fmt.Println("\nAdd Successful. Updated Balance is", balance)
-} else if wantsDelBalance {
-	reduced_balance := removeBalance(balance, to_del)
-	if reduced_balance != 0 {
-		fmt.Println("\nWithdrawal Successful. Updated Balance is", reduced_balance)
-		balance = reduced_balance
-	}
-} else if wantsExit {
-	fmt.Println("\nExiting Bank")
-	fmt.Println("Thanks for choosing our Bank.")
-	break
-}*/
-
 func main() {
 	var balance float32 = 1000
 	bank_start(balance)
