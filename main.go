@@ -2,28 +2,29 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"example.com/bank/utils"
 )
 
 var choice int
-var to_add float32
-var balanceFile = "balance.txt"
-var to_del float32
+var to_add float64
 
-func bank_start(balance float32) {
+const balanceFile string = "balance.txt"
+
+var to_del float64
+
+func bank_start(balance float64) {
 bankWorkLoop:
 	for {
 		utils.BankMenu()
 		fmt.Scan(&choice)
-
 		switch choice {
 		case 1:
 			fmt.Println("\nBalance is", balance)
 		case 2:
-			balance = utils.AddBalance(balance, to_add)
+			updated_balance := utils.AddBalance(balance, to_add)
 			fmt.Println("\nAdd Successful. Updated Balance is", balance)
+			utils.WriteBalanceToFile(balanceFile, updated_balance)
 		case 3:
 			reduced_balance := utils.RemoveBalance(balance, to_del)
 			if reduced_balance != 0 {
@@ -43,8 +44,6 @@ bankWorkLoop:
 }
 
 func main() {
-	data, err := os.ReadFile(balanceFile)
-	utils.Check(err)
-	balance := string(data)
-	fmt.Print(balance)
+	balance := utils.ReadBalanceFromFile(balanceFile)
+	bank_start(balance)
 }
