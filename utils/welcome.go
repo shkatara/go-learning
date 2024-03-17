@@ -31,7 +31,7 @@ func ReadBalanceFromFile(balance_filename string) float64 {
 	data, err := os.ReadFile(balance_filename)
 	Check(err)
 	balanceText := string(data)
-	balance, _ := strconv.ParseFloat(balanceText, 64)
+	balance, _ := strconv.ParseFloat(balanceText, 64) //ParseFloat converts string to float.
 	return balance
 }
 
