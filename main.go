@@ -16,14 +16,16 @@ var to_del float64
 func bank_start(balance float64) {
 bankWorkLoop:
 	for {
+		balance_from_file := utils.ReadBalanceFromFile(balanceFile)
+
 		utils.BankMenu()
 		fmt.Scan(&choice)
 		switch choice {
 		case 1:
-			fmt.Println("\nBalance is", balance)
+			fmt.Println("\nBalance is", balance_from_file)
 		case 2:
 			updated_balance := utils.AddBalance(balance, to_add)
-			fmt.Println("\nAdd Successful. Updated Balance is", balance)
+			fmt.Println("\nAdd Successful. Updated Balance is", updated_balance)
 			utils.WriteBalanceToFile(balanceFile, updated_balance)
 		case 3:
 			reduced_balance := utils.RemoveBalance(balance, to_del)

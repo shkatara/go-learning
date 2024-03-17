@@ -7,7 +7,7 @@ import (
 )
 
 func BankMenu() {
-	fmt.Println("Initializing bank...")
+	fmt.Println("\nInitializing bank...")
 	fmt.Println("\nWelcome to the bank")
 	fmt.Println("1) Check Balance")
 	fmt.Println("2) Add Balance")
