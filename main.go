@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"example.com/bank/utils"
 )
 
 var choice int
 var to_add float32
+var balanceFile = "balance.txt"
 var to_del float32
 
 func bank_start(balance float32) {
@@ -15,6 +17,7 @@ bankWorkLoop:
 	for {
 		utils.BankMenu()
 		fmt.Scan(&choice)
+
 		switch choice {
 		case 1:
 			fmt.Println("\nBalance is", balance)
@@ -40,6 +43,8 @@ bankWorkLoop:
 }
 
 func main() {
-	var balance float32 = 1000
-	bank_start(balance)
+	data, err := os.ReadFile(balanceFile)
+	utils.Check(err)
+	balance := string(data)
+	fmt.Print(balance)
 }

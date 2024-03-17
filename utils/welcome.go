@@ -1,6 +1,9 @@
 package utils
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func BankMenu() {
 	fmt.Println("Initializing bank...")
@@ -12,6 +15,16 @@ func BankMenu() {
 	fmt.Print("What do you need: ")
 }
 
+func ReadBalanceFromFile(balance_filename string) {
+	fileRead, _ := os.ReadFile(balance_filename)
+	fmt.Printf("%s", fileRead)
+}
+
+func Check(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
 func AddBalance(balance float32, to_add float32) float32 {
 	fmt.Print("\nHow much to add to Balance: ")
 	fmt.Scan(&to_add)
