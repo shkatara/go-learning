@@ -32,6 +32,7 @@ bankWorkLoop:
 			if reduced_balance != 0 {
 				fmt.Println("\nWithdrawal Successful. Updated Balance is", reduced_balance)
 				balance = reduced_balance
+				utils.WriteBalanceToFile(balanceFile, reduced_balance)
 			}
 		case 4:
 			fmt.Println("\nExiting Bank")
