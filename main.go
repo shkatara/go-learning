@@ -2,58 +2,37 @@ package main
 
 import (
 	"fmt"
+
+	"example.com/bank/utils"
 )
 
-func bankMenu() {
-	fmt.Println("\nWelcome to the bank")
-	fmt.Println("1) Check Balance")
-	fmt.Println("2) Add Balance")
-	fmt.Println("3) Withdraw Balance")
-	fmt.Println("4) Exit\n")
-	fmt.Print("What do you need: ")
-}
-
-func addBalance(balance float32, to_add float32) float32 {
-	fmt.Print("\nHow much to add to Balance: ")
-	fmt.Scan(&to_add)
-	updated_balance := balance + to_add
-	return updated_balance
-}
-
-func removeBalance(balance float32, to_del float32) float32 {
-	fmt.Print("\nHow much to Withdraw: ")
-	fmt.Scan(&to_del)
-	if to_del > balance {
-		fmt.Println("Not Enough Funds. Can not Withdraw.")
-		return 0
-	} else {
-		updated_balance := balance - to_del
-		return updated_balance
-	}
-}
+var choice int
+var to_add float32
+var to_del float32
 
 func bank_start(balance float32) {
-	var choice int
-	var to_add float32
-	var to_del float32
 bankWorkLoop:
-	for true {
-		bankMenu()
+	for {
+		utils.BankMenu()
 		fmt.Scan(&choice)
 		switch choice {
 		case 1:
 			fmt.Println("\nBalance is", balance)
 		case 2:
-			balance = addBalance(balance, to_add)
+			balance = utils.AddBalance(balance, to_add)
 			fmt.Println("\nAdd Successful. Updated Balance is", balance)
 		case 3:
-			reduced_balance := removeBalance(balance, to_del)
+			reduced_balance := utils.RemoveBalance(balance, to_del)
 			if reduced_balance != 0 {
 				fmt.Println("\nWithdrawal Successful. Updated Balance is", reduced_balance)
 				balance = reduced_balance
 			}
 		case 4:
 			fmt.Println("\nExiting Bank")
+			fmt.Println("Thanks for choosing our Bank.")
+			break bankWorkLoop
+		default:
+			fmt.Println("\nWrong Input. Exiting")
 			fmt.Println("Thanks for choosing our Bank.")
 			break bankWorkLoop
 		}
@@ -83,7 +62,5 @@ if wantsCheckBalance {
 
 func main() {
 	var balance float32 = 1000
-
-	fmt.Println("Initializing bank...")
 	bank_start(balance)
 }
