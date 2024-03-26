@@ -1,40 +1,20 @@
 package main
 
 import (
-	"errors"
 	"fmt"
+
+	"example.com/struct/utils"
 )
 
-type user struct {
-	firstName string
-	lastName  string
-	age       int
-}
-
-func userPrint(u user) {
-	fmt.Println(u.age, u.lastName, u.firstName)
-}
-
-func clearName(u *user) {
-	u.firstName = ""
-}
-
-func validateUser(u user) error {
-	if u.firstName == "" || u.lastName == "" || u.age < 20 {
-		return errors.New("First and last Name can not be empty and age should be more than 20")
-	}
-	return nil
-}
-
-func usermain() {
-	var u user
+func main() {
+	u := utils.User{}
 	fmt.Println("Enter Username")
-	fmt.Scanln(&u.firstName)
+	fmt.Scanln(&u.FirstName)
 	fmt.Println("Enter Lasname")
-	fmt.Scanln(&u.lastName)
+	fmt.Scanln(&u.LastName)
 	fmt.Println("Enter Age")
-	fmt.Scanln(&u.age)
-	err := validateUser(u)
+	fmt.Scanln(&u.Age)
+	err := utils.ValidateUser(u)
 	if err != nil {
 		fmt.Println(err)
 	}
