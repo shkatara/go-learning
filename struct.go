@@ -26,7 +26,7 @@ func validateUser(u user) error {
 	return nil
 }
 
-func main() {
+func usermain() {
 	var u user
 	fmt.Println("Enter Username")
 	fmt.Scanln(&u.firstName)
