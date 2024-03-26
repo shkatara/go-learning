@@ -7,17 +7,16 @@ import (
 )
 
 func main() {
-	u := utils.User{}
-	fmt.Println("Enter Username")
-	fmt.Scanln(&u.FirstName)
-	fmt.Println("Enter Lasname")
-	fmt.Scanln(&u.LastName)
-	fmt.Println("Enter Age")
-	fmt.Scanln(&u.Age)
+	u := utils.NewUser("shubham", "katara", 21)
+
+	a := utils.NewAdmin(u, "shubham.katara59@gmail.com", "redhat@123")
+
 	err := utils.ValidateUser(u)
 	if err != nil {
 		fmt.Println(err)
 	}
+	utils.UserPrint(u)
+	utils.AdminPrint(a)
 
 	/*
 		userPrint(u)  // Here a new copy of u is created and is passed. If we want to work on changing the values of the variable u ( instead of creating a new value of it ), we need to pass a pointer instead of the variable
