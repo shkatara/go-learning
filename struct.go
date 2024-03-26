@@ -26,14 +26,14 @@ func validateUser(u user) error {
 	return nil
 }
 
-func usermain() {
+func main() {
 	var u user
 	fmt.Println("Enter Username")
-	fmt.Scan(&u.firstName)
+	fmt.Scanln(&u.firstName)
 	fmt.Println("Enter Lasname")
-	fmt.Scan(&u.lastName)
+	fmt.Scanln(&u.lastName)
 	fmt.Println("Enter Age")
-	fmt.Scan(&u.age)
+	fmt.Scanln(&u.age)
 	err := validateUser(u)
 	if err != nil {
 		fmt.Println(err)
