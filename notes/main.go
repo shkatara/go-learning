@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 )
 
@@ -28,8 +29,18 @@ func EnterNotesData() Notes {
 
 func InsertIntoJson(n Notes) error {
 	data, _ := json.Marshal(n)
-	err := os.WriteFile(fileName, data, 0644)
+	//err := os.WriteFile(fileName, data, 0644)  //Always truncates the file. Seems to be overwriting the existing data of file.
+	f, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644) //Using os.O_APPEND syscall to stop overwriting and open the file in append mode
 	if err != nil {
+		log.Fatal(err)
+		return err
+	}
+	if _, err := f.Write(data); err != nil { //Shorthand like python. I like python better here.
+		log.Fatal(err)
+		return err
+	}
+	if err := f.Close(); err != nil {
+		log.Fatal(err)
 		return err
 	}
 	return nil
