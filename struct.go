@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -18,7 +19,14 @@ func clearName(u *user) {
 	u.firstName = ""
 }
 
-func userain() {
+func validateUser(u user) error {
+	if u.firstName == "" || u.lastName == "" || u.age < 20 {
+		return errors.New("First and last Name can not be empty and age should be more than 20")
+	}
+	return nil
+}
+
+func usermain() {
 	var u user
 	fmt.Println("Enter Username")
 	fmt.Scan(&u.firstName)
@@ -26,8 +34,14 @@ func userain() {
 	fmt.Scan(&u.lastName)
 	fmt.Println("Enter Age")
 	fmt.Scan(&u.age)
-	userPrint(u)  // Here a new copy of u is created and is passed. If we want to work on changing the values of the variable u ( instead of creating a new value of it ), we need to pass a pointer instead of the variable
-	clearName(&u) // Here, as we wanted to clear the firstname that user has given and stored in struct u.firstname, we pass the pointer to that struct. This prevents go to create a new copy of struct u but instead work on the original one
-	userPrint(u)
+	err := validateUser(u)
+	if err != nil {
+		fmt.Println(err)
+	}
 
+	/*
+		userPrint(u)  // Here a new copy of u is created and is passed. If we want to work on changing the values of the variable u ( instead of creating a new value of it ), we need to pass a pointer instead of the variable
+		clearName(&u) // Here, as we wanted to clear the firstname that user has given and stored in struct u.firstname, we pass the pointer to that struct. This prevents go to create a new copy of struct u but instead work on the original one
+		userPrint(u)
+	*/
 }
