@@ -10,11 +10,11 @@ type user struct {
 	age       int
 }
 
-func userPrint(u user) {
+func (u user) userPrint() {
 	fmt.Println(u.age, u.lastName, u.firstName)
 }
 
-func struct_main() {
+func user_main() {
 	var u user
 	fmt.Println("Enter Username")
 	fmt.Scan(&u.firstName)
@@ -22,5 +22,5 @@ func struct_main() {
 	fmt.Scan(&u.lastName)
 	fmt.Println("Enter Age")
 	fmt.Scan(&u.age)
-	userPrint(u)
+	u.userPrint()
 }
