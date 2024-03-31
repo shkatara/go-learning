@@ -12,11 +12,14 @@ func main() {
 	var number int
 
 	for {
-		fmt.Scan(&number)
+		fmt.Print("Enter a number: ")
+		fmt.Scanln(&number)
 		if number == 99 {
-			fmt.Println(array)
+			fmt.Println("array is ", array)
+			fmt.Println("length of array is ", len(array))
 			break
 		}
 		array = append(array, number)
 	}
+
 }
